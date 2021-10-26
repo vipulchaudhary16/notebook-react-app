@@ -3,10 +3,12 @@ import Navbar from "./components/Navbar";
 import About from "./components/About";
 import Home from "./components/Home";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import NoteState from "./context/Notes/noteState";
 
 function App() {
   return (
     <>
+    <NoteState>
       <Router>
         <Navbar />
         <Switch>
@@ -18,6 +20,7 @@ function App() {
           </Route>
         </Switch>
       </Router>
+    </NoteState>
     </>
   );
 }
