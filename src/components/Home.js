@@ -1,10 +1,11 @@
-import React from "react";
-
-
+import { React, useContext } from "react";
+import Notes from "./Notes";
+import AddNote from "./AddNote";
 function Home() {
   return (
     <div>
-      <h1>This is home</h1>
+      <AddNote />
+      <Notes></Notes>
     </div>
   );
 }
