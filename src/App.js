@@ -4,6 +4,7 @@ import About from "./components/About";
 import Home from "./components/Home";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import NoteState from "./context/Notes/noteState";
+import Alert from "./components/Alert";
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
       <NoteState>
         <Router>
           <Navbar />
+          <Alert message="This is amazing"/>
           <div className="container">
             <Switch>
               <Route exact path="/">
