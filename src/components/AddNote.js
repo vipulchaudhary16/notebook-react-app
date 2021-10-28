@@ -2,19 +2,22 @@ import { React, useContext , useState } from 'react';
 import noteContext from "../context/Notes/noteContext";
 
 function AddNote() {
+  //Context sentences
   const context = useContext(noteContext);
   const { addNote } = context;
 
+  //State for adding notes
   const [note, setNote] = useState({ title: "", description: "" , tag : "default" });
 
   const handleAddNote = (e) => {
-    e.preventDefault();
-    addNote(note.title , note.description , note.tag);
+    e.preventDefault(); //It will prevent browser from reloading
+    addNote(note.title , note.description , note.tag); //Context call
   };
 
   const onChange = (e) => {
-    setNote({...note , [e.target.name]:e.target.value});
+    setNote({...note , [e.target.name]:e.target.value}); //Still seems confusing REDO
   };
+
   return (
     <div className="my-3 col-md-3">
       <h3>Add a Note</h3>
