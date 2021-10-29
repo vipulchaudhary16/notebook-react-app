@@ -22,7 +22,7 @@ function AddNote() {
     <div className="my-3 col-md-3">
       <h3>Add a Note</h3>
       <form>
-        <div className="mb-3">
+        <div className="mb-2">
           <label htmlFor=" title" className="form-label">
             Title
           </label>
@@ -31,11 +31,10 @@ function AddNote() {
             className="form-control"
             id=" title"
             name="title"
-            aria-describedby="emailHelp"
             onChange={onChange}
           />
         </div>
-        <div className="mb-3">
+        <div className="mb-2">
           <label htmlFor=" description" className="form-label">
             Description
           </label>
@@ -45,6 +44,18 @@ function AddNote() {
             className="form-control"
             id="description"
             name="description"
+            onChange={onChange}
+          />
+        </div>
+        <div className="mb-2">
+        <label htmlFor=" tag" className="form-label">
+            Tag
+          </label>
+          <input
+            type="text"
+            className="form-control"
+            id=" tag"
+            name="tag"
             onChange={onChange}
           />
         </div>
