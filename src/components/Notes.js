@@ -5,30 +5,30 @@ import AddNote from "./AddNote";
 
 function Notes() {
   const context = useContext(noteContext);
-  const { notes, getAllNotes } = context;
+  const { notes, getAllNotes , editNote } = context;
   useEffect(() => {
     getAllNotes();
         // eslint-disable-next-line
   }, []);
 
   const ref = useRef(null);
-  const [note, setNote] = useState({ etitle: "", edescription: "", etag: "" });
+  const refClose = useRef(null);
+  const [note, setNote] = useState({id:"", etitle: "", edescription: "", etag: "" });
 
   const updateNote = (currentNote) => {
-    console.log("Updating notes");
     ref.current.click();
     setNote({
+      id: currentNote._id,
       etitle: currentNote.title,
       edescription: currentNote.description,
       etag: currentNote.tag,
     });
   };
 
- 
-
   const handleAddNote = (e) => {
     e.preventDefault(); //It will prevent browser from reloading
-    console.log("Updating the note...", note);
+    refClose.current.click();
+    editNote(note.id , note.etitle , note.edescription , note.etag);
   };
 
   const onChange = (e) => {
@@ -115,6 +115,7 @@ function Notes() {
             </div>
             <div className="modal-footer">
               <button
+                ref = {refClose}
                 type="button"
                 className="btn btn-secondary"
                 data-bs-dismiss="modal"

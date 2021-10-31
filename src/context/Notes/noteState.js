@@ -48,7 +48,7 @@ const NoteState = (props) => {
   //To edit a note
    const editNote = async (id, title, description, tag) => {
     const response = await fetch(`${host}/api/notes/updatenote/${id}`, {
-      method: "POST",
+      method: "PUT",
       headers: {
         "Content-Type": "application/json",
         "auth-token" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjE2NmRkM2QyYzE4NzljZjMwZTJiZGYzIn0sImlhdCI6MTYzNDgxNDAwNX0.P-0s1Eq3dtsFtgLfnDyKO6ANLP6LgbkFxisHBvNLHmc"
@@ -56,15 +56,18 @@ const NoteState = (props) => {
       body: JSON.stringify({title , description, tag}),
     });
 
-    for (let index = 0; index < notes.length; index++) {
+    let newNotes = JSON.parse(JSON.stringify(notes))
+
+    for (let index = 0; index < newNotes.length; index++) {
       //Find and update
-      const element = notes[index];
+      const element = newNotes[index];
       if (element._id === id) {
-        element.title = title;
-        element.description = description;
-        element.tag = tag;
+        newNotes[index].title = title;
+        newNotes[index].description = description;
+        newNotes[index].tag = tag;
       }
     }
+    setNotes(newNotes);
   };
 
   //To delete note
@@ -77,9 +80,7 @@ const NoteState = (props) => {
       },
     });
     const json= response.json();
-    console.log(json);
 
-    console.log("Deleting a note id : " + id);
     const newNotes = notes.filter((note) => {
       return note._id !== id;
     });
