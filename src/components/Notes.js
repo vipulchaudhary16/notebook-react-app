@@ -5,15 +5,20 @@ import AddNote from "./AddNote";
 
 function Notes() {
   const context = useContext(noteContext);
-  const { notes, getAllNotes , editNote } = context;
+  const { notes, getAllNotes, editNote } = context;
   useEffect(() => {
     getAllNotes();
-        // eslint-disable-next-line
+    // eslint-disable-next-line
   }, []);
 
   const ref = useRef(null);
   const refClose = useRef(null);
-  const [note, setNote] = useState({id:"", etitle: "", edescription: "", etag: "" });
+  const [note, setNote] = useState({
+    id: "",
+    etitle: "",
+    edescription: "",
+    etag: "",
+  });
 
   const updateNote = (currentNote) => {
     ref.current.click();
@@ -28,7 +33,7 @@ function Notes() {
   const handleAddNote = (e) => {
     e.preventDefault(); //It will prevent browser from reloading
     refClose.current.click();
-    editNote(note.id , note.etitle , note.edescription , note.etag);
+    editNote(note.id, note.etitle, note.edescription, note.etag);
   };
 
   const onChange = (e) => {
@@ -42,8 +47,8 @@ function Notes() {
       <button
         ref={ref}
         type="button"
-        className="btn btn-primary d-none"	
-        data-bs-toggle="modal"	
+        className="btn btn-primary d-none"
+        data-bs-toggle="modal"
         data-bs-target="#exampleModal"
       >
         Launch demo modal
@@ -63,11 +68,10 @@ function Notes() {
               </h5>
               <button
                 type="button"
-                className="btn-close"	
+                className="btn-close"
                 data-bs-dismiss="modal"
                 aria-label="Close"
-              >
-              </button>
+              ></button>
             </div>
             <div className="modal-body">
               <form>
@@ -81,6 +85,8 @@ function Notes() {
                     id=" etitle"
                     name="etitle"
                     onChange={onChange}
+                    minLength = {2}
+                    required
                     value={note.etitle}
                   />
                 </div>
@@ -94,6 +100,8 @@ function Notes() {
                     className="form-control"
                     id="edescription"
                     name="edescription"
+                    minLength = {5}
+                    required
                     onChange={onChange}
                     value={note.edescription}
                   />
@@ -115,7 +123,7 @@ function Notes() {
             </div>
             <div className="modal-footer">
               <button
-                ref = {refClose}
+                ref={refClose}
                 type="button"
                 className="btn btn-secondary"
                 data-bs-dismiss="modal"
@@ -126,6 +134,7 @@ function Notes() {
                 type="button"
                 className="btn btn-primary"
                 onClick={handleAddNote}
+                disabled = {note.etitle.length <2 || note.edescription.length < 5} 
               >
                 Update
               </button>
@@ -135,6 +144,9 @@ function Notes() {
       </div>
       <div className="row my-3">
         <h3>Your Notes</h3>
+        <div className="container mx-2">
+          {notes.length === 0 && "No notes to display, add one!"}
+        </div>
         {notes.map((note) => {
           return (
             <NoteItem key={note._id} updateNote={updateNote} note={note} />
@@ -143,6 +155,6 @@ function Notes() {
       </div>
     </>
   );
-};
+}
 
 export default Notes;
