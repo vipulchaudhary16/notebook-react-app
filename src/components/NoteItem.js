@@ -8,10 +8,13 @@ function NoteItem(props) {
   const { deleteNote } = context;
   return (
     <div className="col-md-3">
-      <div className="card my-2">
-        <div className="card-header d-flex align-items-center justify-content-between">
-          <h5>{note.title}</h5>
-          <div>
+      <div
+        className="card my-2"
+        style={{ "box-shadow": "rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px" }}
+      >
+        <div className="card-header d-flex align-items-center  justify-content-between">
+          <p className="fw-bold"> {note.title.toUpperCase()} </p>
+          <div className="d-flex  ">
             <i
               className="fa fa-pencil mx-2"
               onClick={() => {
@@ -19,7 +22,7 @@ function NoteItem(props) {
               }}
             ></i>
             <i
-              className="fa fa-trash-o mx-2"
+              className="fa fa-trash-o mx-1"
               onClick={() => {
                 deleteNote(note._id);
               }}
@@ -28,6 +31,7 @@ function NoteItem(props) {
         </div>
         <div className="card-body">
           <p className="card-text">{note.description}</p>
+          <span className="badge bg-success text-light">{note.tag}</span>
         </div>
       </div>
     </div>

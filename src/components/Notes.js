@@ -41,7 +41,7 @@ function Notes() {
   };
 
   return (
-    <>
+    <div className="">
       <AddNote />
       {/*Bootstrap modal for editNote */}
       <button
@@ -153,7 +153,7 @@ function Notes() {
           );
         })}
       </div>
-    </>
+    </div>
   );
 }
 

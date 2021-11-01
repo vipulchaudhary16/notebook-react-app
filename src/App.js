@@ -11,9 +11,21 @@ function App() {
     <>
       <NoteState>
         <Router>
-          <Navbar />
           {/* <Alert message="This is amazing"/> */}
-          <div className="container">
+          <Navbar />
+          <div
+            className="px-3 mh-100vh"
+            // style={{
+            //   background:
+            //     "linear-gradient(to bottom right ,#d97b34 ,  #eaedd8 ,  #008000 )",
+            // }}
+            style={{
+              "background-color": "#74EBD5",
+              "background-image":
+              "linear-gradient(90deg, #74EBD5 0%, #9FACE6 100%)",
+                "minHeight": "100vh",
+            }}
+          >
             <Switch>
               <Route exact path="/">
                 <Home />
