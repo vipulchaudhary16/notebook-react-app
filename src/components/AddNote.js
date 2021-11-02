@@ -23,17 +23,17 @@ function AddNote() {
   const showHideForm = () => {
     if (formDisplay === "d-none") {
       setFormDisplay("");
-    } else {
+    } else 
       {
         setFormDisplay("d-none");
       }
-    }
+    
   };
 
   return (
     <div className>
       <button className="btn btn-secondary my-2" onClick={showHideForm}>
-          <i class="fa fa-plus"></i>
+          <i className="fa fa-plus"></i>
       </button>
 
       <div className={`my-3 col-md-3 ${formDisplay} container`} id="form">

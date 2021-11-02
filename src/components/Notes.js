@@ -145,7 +145,7 @@ function Notes() {
       <div className="row my-3">
         <h3>Your Notes</h3>
         <div className="container mx-2">
-          {notes.length === 0 && "No notes to display, add one!"}
+          {notes.length === 0 && "No notes to display, Click + to add one!"}
         </div>
         {notes.map((note) => {
           return (

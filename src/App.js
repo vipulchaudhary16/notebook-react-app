@@ -2,6 +2,8 @@ import "./App.css";
 import Navbar from "./components/Navbar";
 import About from "./components/About";
 import Home from "./components/Home";
+import Login from "./components/Login";
+import Signup from "./components/Signup";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import NoteState from "./context/Notes/noteState";
 import Alert from "./components/Alert";
@@ -14,14 +16,10 @@ function App() {
           {/* <Alert message="This is amazing"/> */}
           <Navbar />
           <div
-            className="px-3 mh-100vh"
-            // style={{
-            //   background:
-            //     "linear-gradient(to bottom right ,#d97b34 ,  #eaedd8 ,  #008000 )",
-            // }}
+            className="px-3"
             style={{
-              "background-color": "#74EBD5",
-              "background-image":
+              "backgroundColor": "#74EBD5",
+              "backgroundImage":
               "linear-gradient(90deg, #74EBD5 0%, #9FACE6 100%)",
                 "minHeight": "100vh",
             }}
@@ -32,6 +30,12 @@ function App() {
               </Route>
               <Route exact path="/about">
                 <About />
+              </Route>
+              <Route exact path="/login">
+                <Login />
+              </Route>
+              <Route exact path="/signup">
+                <Signup />
               </Route>
             </Switch>
           </div>
