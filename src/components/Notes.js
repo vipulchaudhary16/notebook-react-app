@@ -3,9 +3,10 @@ import noteContext from "../context/Notes/noteContext";
 import NoteItem from "./NoteItem";
 import AddNote from "./AddNote";
 
-function Notes() {
+function Notes(props) {
   const context = useContext(noteContext);
   const { notes, getAllNotes, editNote } = context;
+  const {showAlert} = props;
   useEffect(() => {
     getAllNotes();
     // eslint-disable-next-line
@@ -30,10 +31,11 @@ function Notes() {
     });
   };
 
-  const handleAddNote = (e) => {
+  const handleUpdateNote = (e) => {
     e.preventDefault(); //It will prevent browser from reloading
     refClose.current.click();
     editNote(note.id, note.etitle, note.edescription, note.etag);
+    props.showAlert("Note updated" , "success");
   };
 
   const onChange = (e) => {
@@ -41,8 +43,8 @@ function Notes() {
   };
 
   return (
-    <div className="">
-      <AddNote />
+    <div>
+      <AddNote showAlert = {showAlert} />
       {/*Bootstrap modal for editNote */}
       <button
         ref={ref}
@@ -133,7 +135,7 @@ function Notes() {
               <button
                 type="button"
                 className="btn btn-primary"
-                onClick={handleAddNote}
+                onClick={handleUpdateNote}
                 disabled = {note.etitle.length <2 || note.edescription.length < 5} 
               >
                 Update
@@ -149,7 +151,7 @@ function Notes() {
         </div>
         {notes.map((note) => {
           return (
-            <NoteItem key={note._id} updateNote={updateNote} note={note} />
+            <NoteItem key={note._id} updateNote={updateNote} note={note} showAlert= {showAlert}/>
           );
         })}
       </div>

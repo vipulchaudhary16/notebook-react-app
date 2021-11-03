@@ -20,11 +20,12 @@ function NoteItem(props) {
               onClick={() => {
                 updateNote(note);
               }}
-            ></i>
+              ></i>
             <i
               className="fa fa-trash-o mx-1"
               onClick={() => {
                 deleteNote(note._id);
+                props.showAlert("Note deleteNote","danger");
               }}
             ></i>
           </div>

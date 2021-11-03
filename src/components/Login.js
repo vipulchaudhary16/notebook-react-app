@@ -1,7 +1,7 @@
 import {React, useState } from "react";
 import {useHistory } from "react-router-dom";
 
-function Login() {
+function Login(props) {
   const host = "http://localhost:5000";
 
   const [user, setUser] = useState({ email: "", password: ""})
@@ -22,9 +22,11 @@ function Login() {
         //Save the auth token to local storage and redirect to users note
         localStorage.setItem('token' , loginJSON.authToken);
         history.push("/")
-    }
-    else{
-        alert("Invalid user details")
+        props.showAlert("Welcome back" , "success")
+      }
+      else{
+        props.showAlert("invalid credentials", "danger")
+        
     }
   };
 

@@ -1,18 +1,20 @@
 import { React, useContext, useState } from "react";
 import noteContext from "../context/Notes/noteContext";
 
-function AddNote() {
+function AddNote(props) {
   //Context sentences
   const context = useContext(noteContext);
   const { addNote } = context;
 
   //State for adding notes
   const [note, setNote] = useState({ title: "", description: "", tag: "" });
+
   const [formDisplay, setFormDisplay] = useState("d-none");
 
   const handleAddNote = (e) => {
     e.preventDefault(); //It will prevent browser from reloading
     addNote(note.title, note.description, note.tag); //Context call
+    props.showAlert("Note added" ,"success")
     setNote({ title: "", description: "", tag: "" });
   };
 
@@ -23,15 +25,16 @@ function AddNote() {
   const showHideForm = () => {
     if (formDisplay === "d-none") {
       setFormDisplay("");
-    } else 
-      {
-        setFormDisplay("d-none");
-      }
+    }
+    else 
+    {
+      setFormDisplay("d-none");
+    }
     
   };
 
   return (
-    <div className>
+    <div>
       <button className="btn btn-secondary my-2" onClick={showHideForm}>
           <i className="fa fa-plus"></i>
       </button>

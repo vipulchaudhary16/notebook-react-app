@@ -2,7 +2,7 @@ import {React, useState } from "react";
 import {useHistory } from "react-router-dom";
 
 
-function Signup() {
+function Signup(props) {
   const host = "http://localhost:5000";
 
   const [user, setUser] = useState({name:"", email: "", password: "" , cpassword: ""});
@@ -23,9 +23,10 @@ function Signup() {
         //Save the auth token to local storage and redirect to users note
         localStorage.setItem('token' , signUpJSON.authToken);
         history.push("/")
+        props.showAlert(`Dear ${user.name} Your account has been created` , "success")
     }
     else{
-        alert("User Already Registered")
+        props.showAlert("Error creating user" , "danger")
     }
   };
   
