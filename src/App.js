@@ -17,12 +17,12 @@ function App() {
           <Navbar />
           <div
             className="px-3"
-            style={{
-              "backgroundColor": "#74EBD5",
-              "backgroundImage":
-              "linear-gradient(90deg, #74EBD5 0%, #9FACE6 100%)",
-                "minHeight": "100vh",
-            }}
+            // style={{
+            //   "backgroundColor": "#74EBD5",
+            //   "backgroundImage":
+            //   "linear-gradient(90deg, #74EBD5 0%, #9FACE6 100%)",
+            //     "minHeight": "100vh",
+            // }}
           >
             <Switch>
               <Route exact path="/">

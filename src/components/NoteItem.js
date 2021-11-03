@@ -10,7 +10,7 @@ function NoteItem(props) {
     <div className="col-md-3">
       <div
         className="card my-2"
-        style={{ "box-shadow": "rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px" }}
+        style={{ "boxShadow": "rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px" }}
       >
         <div className="card-header d-flex align-items-center  justify-content-between">
           <p className="fw-bold"> {note.title.toUpperCase()} </p>
