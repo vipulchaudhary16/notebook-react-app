@@ -26,7 +26,7 @@ function Signup(props) {
         props.showAlert(`Dear ${user.name} Your account has been created` , "success")
     }
     else{
-        props.showAlert("Error creating user" , "danger")
+        props.showAlert(signUpJSON.error , "danger")
     }
   };
   
@@ -37,9 +37,13 @@ function Signup(props) {
 
   return (
     <div>
+      <div className="pt-2">
+        <h3>Create Account to save your notes</h3> 
+      </div>
       <div className="py-2">
         <form
-          className="d-flex flex-column align-items-center  justify-content-center w-80"
+          // className="d-flex flex-column align-items-center  justify-content-center w-80"
+          className="container vw-50"
           onSubmit={handleSubmit}
         >
           <div className="mb-3">
@@ -85,7 +89,7 @@ function Signup(props) {
           </div>
           <div className="mb-3">
             <label htmlFor="cpassword" className="form-label">
-              Password
+              Confirm Password
             </label>
             <input
               type="password"

@@ -1,4 +1,5 @@
 import { React, useContext, useEffect, useRef, useState } from "react";
+import { useHistory } from "react-router-dom";
 import noteContext from "../context/Notes/noteContext";
 import NoteItem from "./NoteItem";
 import AddNote from "./AddNote";
@@ -6,9 +7,16 @@ import AddNote from "./AddNote";
 function Notes(props) {
   const context = useContext(noteContext);
   const { notes, getAllNotes, editNote } = context;
-  const {showAlert} = props;
+  const { showAlert } = props;
+  let history = useHistory();
+
   useEffect(() => {
-    getAllNotes();
+    if (localStorage.getItem("token")) {
+      getAllNotes();
+    }
+    else{
+      history.push("/login");
+    }
     // eslint-disable-next-line
   }, []);
 
@@ -35,7 +43,7 @@ function Notes(props) {
     e.preventDefault(); //It will prevent browser from reloading
     refClose.current.click();
     editNote(note.id, note.etitle, note.edescription, note.etag);
-    props.showAlert("Note updated" , "success");
+    props.showAlert("Note updated", "success");
   };
 
   const onChange = (e) => {
@@ -44,7 +52,7 @@ function Notes(props) {
 
   return (
     <div>
-      <AddNote showAlert = {showAlert} />
+      <AddNote showAlert={showAlert} />
       {/*Bootstrap modal for editNote */}
       <button
         ref={ref}
@@ -87,7 +95,7 @@ function Notes(props) {
                     id=" etitle"
                     name="etitle"
                     onChange={onChange}
-                    minLength = {2}
+                    minLength={2}
                     required
                     value={note.etitle}
                   />
@@ -102,7 +110,7 @@ function Notes(props) {
                     className="form-control"
                     id="edescription"
                     name="edescription"
-                    minLength = {5}
+                    minLength={5}
                     required
                     onChange={onChange}
                     value={note.edescription}
@@ -136,7 +144,9 @@ function Notes(props) {
                 type="button"
                 className="btn btn-primary"
                 onClick={handleUpdateNote}
-                disabled = {note.etitle.length <2 || note.edescription.length < 5} 
+                disabled={
+                  note.etitle.length < 2 || note.edescription.length < 5
+                }
               >
                 Update
               </button>
@@ -151,7 +161,12 @@ function Notes(props) {
         </div>
         {notes.map((note) => {
           return (
-            <NoteItem key={note._id} updateNote={updateNote} note={note} showAlert= {showAlert}/>
+            <NoteItem
+              key={note._id}
+              updateNote={updateNote}
+              note={note}
+              showAlert={showAlert}
+            />
           );
         })}
       </div>

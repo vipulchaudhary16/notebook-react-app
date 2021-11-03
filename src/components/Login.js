@@ -25,7 +25,7 @@ function Login(props) {
         props.showAlert("Welcome back" , "success")
       }
       else{
-        props.showAlert("invalid credentials", "danger")
+        props.showAlert(loginJSON.error, "danger")
         
     }
   };
@@ -35,8 +35,12 @@ function Login(props) {
   }
   return (
     <div className="py-2">
+      <div className="mt-2">
+        <h3>Login to VeerZa Notebook</h3> 
+      </div>
       <form
-        className="d-flex flex-column align-items-center  justify-content-center w-80"
+        // className="d-flex flex-column align-items-center  justify-content-center w-80"
+        className="container vw-50"
         onSubmit={handleSubmit}
       >
         <div className="mb-3">
@@ -68,7 +72,7 @@ function Login(props) {
         </div>
 
         <button type="submit" className="btn btn-primary">
-          Submit
+          Login
         </button>
       </form>
     </div>
