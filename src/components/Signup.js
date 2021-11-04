@@ -10,7 +10,11 @@ function Signup(props) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const response = await fetch(`${host}/api/auth/createUser`, {
+    if(user.cpassword!==user.password){
+      props.showAlert("password does not match", "danger")
+      return;
+    }
+    const response = await fetch(`${host}/api/auth/createUser`, { 
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -27,12 +31,12 @@ function Signup(props) {
     }
     else{
         props.showAlert(signUpJSON.error , "danger")
-    }
-  };
-  
-
-  const onChange = (e) => {
-    setUser({ ...user, [e.target.name]: e.target.value });
+      }
+    };
+    
+    const onChange = (e) => {
+      setUser({ ...user, [e.target.name]: e.target.value });
+      
   };
 
   return (

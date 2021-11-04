@@ -1,18 +1,28 @@
-import { React, useEffect } from "react";
-import { Link, useLocation , useHistory } from "react-router-dom";
+import { React, useEffect, useState } from "react";
+import { Link, useLocation, useHistory } from "react-router-dom";
 
 export default function Navbar(props) {
   let location = useLocation();
   let history = useHistory();
-  const {showAlert}  = props;
+  const { showAlert } = props;
 
   useEffect(() => {}, [location]);
 
-  const handleLogout =  ()=>{
-    localStorage.removeItem('token');
-    showAlert("Logged Out","success");
-     history.push("/login")
-  }
+  const [dashDisplay, setDashDisplay] = useState("d-none");
+
+  const showHideForm = () => {
+    if (dashDisplay === "d-none") {
+      setDashDisplay("");
+    } else {
+      setDashDisplay("d-none");
+    }
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    showAlert("Logged Out", "success");
+    history.push("/login");
+  };
 
   return (
     <div>
@@ -70,16 +80,37 @@ export default function Navbar(props) {
                 </Link>
               </form>
             ) : (
-              <form className="d-flex">
-                <Link
+              <div className="d-flex">
+                <button
                   className="btn btn-primary mx-2"
-                  to="/login"
                   role="button"
-                  onClick={handleLogout}
+                  onClick={showHideForm}
                 >
-                  Logout
-                </Link>
-              </form>
+                  user
+                </button>
+
+                <div
+                  class={`card position-absolute ${dashDisplay}`}
+                  style={{ right: 3, width: "20vw", top: 60 }}
+                >
+                  <div class="card-body">
+                    <h5 class="card-title">Card title</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+                    <p class="card-text">
+                      Some quick example text to build on the card title and
+                      make up the bulk of the card's content.
+                    </p>
+                    <Link
+                      className="btn btn-primary mx-2"
+                      to="/login"
+                      role="button"
+                      onClick={handleLogout}
+                    >
+                      Logout
+                    </Link>
+                  </div>
+                </div>
+              </div>
             )}
           </div>
         </div>
