@@ -2,7 +2,7 @@ import NoteContext from "./noteContext";
 import { useState } from "react";
 
 const NoteState = (props) => {
-  const host = "http://localhost:5000"
+  const host = "https://backend-database-for-notebook.vercel.app"
   //Getting all notes while user is logged in
   const getAllNotes = async () => {
     const response = await fetch(`${host}/api/notes/fetchallnotes`, {

@@ -11,10 +11,12 @@ function AddNote(props) {
 
   const [formDisplay, setFormDisplay] = useState("d-none");
 
+  const [minus_or_plus, setMinusOrPlus] = useState("plus");
+
   const handleAddNote = (e) => {
     e.preventDefault(); //It will prevent browser from reloading
     addNote(note.title, note.description, note.tag); //Context call
-    props.showAlert("Note added" ,"success")
+    props.showAlert("Note added", "success");
     setNote({ title: "", description: "", tag: "" });
   };
 
@@ -25,23 +27,26 @@ function AddNote(props) {
   const showHideForm = () => {
     if (formDisplay === "d-none") {
       setFormDisplay("");
-    }
-    else 
-    {
+    } else {
       setFormDisplay("d-none");
     }
-    
+
+    if (minus_or_plus === "plus") {
+      setMinusOrPlus("minus");
+    } else {
+      setMinusOrPlus("plus");
+    }
   };
 
   return (
-    <div>
+    <div className="mb-4">
       <button className="btn btn-secondary my-2" onClick={showHideForm}>
-          <i className="fa fa-plus"></i>
+        <i className={`fa fa-${minus_or_plus}`}></i>
       </button>
 
-      <div className={`my-3 col-md-3 ${formDisplay} container`} id="form">
-        <h3>Add a Note</h3>
-        <form>
+      <div className={`my-3 col-md-3 ${formDisplay} container `} id="form">
+        <h3 className="text-center">Add a Note</h3>
+        <form className="d-flex flex-column justify-content-center">
           <div className="mb-2">
             <label htmlFor=" title" className="form-label">
               Title

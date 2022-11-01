@@ -1,11 +1,11 @@
-import {React, useState } from "react";
-import {useHistory } from "react-router-dom";
+import { React, useState } from "react";
+import { useHistory } from "react-router-dom";
 
 function Login(props) {
-  const host = "http://localhost:5000";
+  const host = "https://backend-database-for-notebook.vercel.app";
 
-  const [user, setUser] = useState({ email: "", password: ""})
-  let history = useHistory({})
+  const [user, setUser] = useState({ email: "", password: "" });
+  let history = useHistory({});
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -14,33 +14,29 @@ function Login(props) {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ email : user.email, password:user.password }),
+      body: JSON.stringify({ email: user.email, password: user.password }),
     });
     const loginJSON = await response.json();
     console.log(loginJSON);
-    if(loginJSON.success){
-        //Save the auth token to local storage and redirect to users note
-        localStorage.setItem('token' , loginJSON.authToken);
-        history.push("/")
-        props.showAlert("Welcome back" , "success")
-      }
-      else{
-        props.showAlert(loginJSON.error, "danger")
-        
+    if (loginJSON.success) {
+      //Save the auth token to local storage and redirect to users note
+      localStorage.setItem("token", loginJSON.authToken);
+      localStorage.setItem('email', user.email);
+      history.push("/");
+      props.showAlert("Welcome back", "success");
+    } else {
+      props.showAlert(loginJSON.error, "danger");
     }
   };
 
-  const onChange = (e)=>{
-      setUser({...user , [e.target.name]:e.target.value})
-  }
+  const onChange = (e) => {
+    setUser({ ...user, [e.target.name]: e.target.value });
+  };
   return (
-    <div className="py-2">
-      <div className="mt-2">
-        <h3>Login to VeerZa Notebook</h3> 
-      </div>
+    <div className="py-4 w-100 ">
+      <h3 className="text-center py-4">Login to VeerZa Notebook</h3>
       <form
-        // className="d-flex flex-column align-items-center  justify-content-center w-80"
-        className="container vw-50"
+        className="container w-25 d-flex flex-column justify-content-center"
         onSubmit={handleSubmit}
       >
         <div className="mb-3">
@@ -54,7 +50,6 @@ function Login(props) {
             className="form-control"
             value={user.email}
             onChange={onChange}
-            
           />
         </div>
         <div className="mb-3">

@@ -6,6 +6,8 @@ export default function Navbar(props) {
   let history = useHistory();
   const { showAlert } = props;
 
+  const [user, setUser] = useState({ name: "Test", email: "Test@gmail.com" });
+
   useEffect(() => {}, [location]);
 
   const [dashDisplay, setDashDisplay] = useState("d-none");
@@ -16,6 +18,8 @@ export default function Navbar(props) {
     } else {
       setDashDisplay("d-none");
     }
+    setUser( {name : 'Ravina' , email : 
+    localStorage.getItem('email')});
   };
 
   const handleLogout = () => {
@@ -55,7 +59,7 @@ export default function Navbar(props) {
                   Home
                 </Link>
               </li>
-              <li className="nav-item">
+              {/* <li className="nav-item">
                 <Link
                   className={`nav-link ${
                     location.pathname === "/about" ? "active" : ""
@@ -64,7 +68,7 @@ export default function Navbar(props) {
                 >
                   About
                 </Link>
-              </li>
+              </li> */}
             </ul>
             {!localStorage.getItem("token") ? (
               <form className="d-flex">
@@ -86,7 +90,7 @@ export default function Navbar(props) {
                   role="button"
                   onClick={showHideForm}
                 >
-                  user
+                  <i className="fa fa-user" ></i>
                 </button>
 
                 <div
@@ -94,11 +98,10 @@ export default function Navbar(props) {
                   style={{ right: 3, width: "20vw", top: 60 }}
                 >
                   <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+                    {/* <h5 class="card-title">{user.name}</h5> */}
+                    <h6 class="card-subtitle mb-2 text-muted">{user.email}</h6>
                     <p class="card-text">
-                      Some quick example text to build on the card title and
-                      make up the bulk of the card's content.
+                      
                     </p>
                     <Link
                       className="btn btn-primary mx-2"
