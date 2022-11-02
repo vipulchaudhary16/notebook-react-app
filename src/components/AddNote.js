@@ -1,5 +1,6 @@
 import { React, useContext, useState } from "react";
 import noteContext from "../context/Notes/noteContext";
+import Loader from "./Loader";
 
 function AddNote(props) {
   //Context sentences
@@ -12,6 +13,7 @@ function AddNote(props) {
   const [formDisplay, setFormDisplay] = useState("d-none");
 
   const [minus_or_plus, setMinusOrPlus] = useState("plus");
+  const [loading, setLoading] = useState(false);
 
   const handleAddNote = (e) => {
     e.preventDefault(); //It will prevent browser from reloading
@@ -97,7 +99,7 @@ function AddNote(props) {
             className="btn btn-primary"
             onClick={handleAddNote}
           >
-            Add
+            {loading ? <Loader loading={loading} /> : "Add Note"}
           </button>
         </form>
       </div>

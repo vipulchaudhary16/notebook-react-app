@@ -1,9 +1,11 @@
 import { React, useState } from "react";
 import { useHistory } from "react-router-dom";
+import Loader from "./Loader";
 
 function Signup(props) {
   const host = "https://backend-database-for-notebook.vercel.app";
-
+  
+  const [loading, setLoading] = useState(false);
   const [user, setUser] = useState({
     name: "",
     email: "",
@@ -13,9 +15,11 @@ function Signup(props) {
   let history = useHistory();
 
   const handleSubmit = async (e) => {
+    setLoading(true);
     e.preventDefault();
     if (user.cpassword !== user.password) {
       props.showAlert("password does not match", "danger");
+      setLoading(false);
       return;
     }
     const response = await fetch(`${host}/api/auth/createUser`, {
@@ -42,6 +46,7 @@ function Signup(props) {
     } else {
       props.showAlert(signUpJSON.error, "danger");
     }
+    setLoading(false);
   };
 
   const onChange = (e) => {
@@ -49,10 +54,10 @@ function Signup(props) {
   };
 
   return (
-      <div className="py-4 w-100 ">
+      <div className="container xs:w-75 lg: w-25">
         <h3 className="text-center py-4">Create Account to save your notes</h3>
         <form
-          className="container w-25 d-flex flex-column justify-content-center"
+          className="d-flex flex-column justify-content-center"
           onSubmit={handleSubmit}
         >
 
@@ -67,6 +72,7 @@ function Signup(props) {
               className="form-control"
               value={user.name}
               onChange={onChange}
+              required
             />
           </div>
           <div className="mb-3">
@@ -80,6 +86,7 @@ function Signup(props) {
               className="form-control"
               value={user.email}
               onChange={onChange}
+              required
             />
           </div>
           <div className="mb-3">
@@ -114,7 +121,7 @@ function Signup(props) {
           </div>
 
           <button type="submit" className="btn btn-primary">
-            SignUp
+            {loading ? <Loader loading={loading} /> : "Create Account"}
           </button>
         </form>
       </div>
