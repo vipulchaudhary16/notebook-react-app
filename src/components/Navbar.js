@@ -8,7 +8,10 @@ export default function Navbar(props) {
 
   const [user, setUser] = useState({ name: "Test", email: "Test@gmail.com" });
 
-  useEffect(() => {}, [location]);
+  useEffect(() => {
+    setUser( {name : 'Ravina' , email : 
+    localStorage.getItem('email')});
+  }, [location]);
 
   const [dashDisplay, setDashDisplay] = useState("d-none");
 
@@ -24,6 +27,7 @@ export default function Navbar(props) {
 
   const handleLogout = () => {
     localStorage.removeItem("token");
+    localStorage.removeItem("email");
     showAlert("Logged Out", "success");
     history.push("/login");
   };

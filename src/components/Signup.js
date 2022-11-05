@@ -38,6 +38,7 @@ function Signup(props) {
     if (signUpJSON.success) {
       //Save the auth token to local storage and redirect to users note
       localStorage.setItem("token", signUpJSON.authToken);
+      localStorage.setItem("email", user.email);
       history.push("/");
       props.showAlert(
         `Dear ${user.name} Your account has been created`,
