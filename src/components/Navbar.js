@@ -98,8 +98,8 @@ export default function Navbar(props) {
                 </button>
 
                 <div
-                  class={`card position-absolute ${dashDisplay}`}
-                  style={{ right: 3, width: "20vw", top: 60 }}
+                  class={`card position-absolute ${dashDisplay} xs:w-75 lg:w-25`}
+                  style={{ right: 3, top: 60 }}
                 >
                   <div class="card-body">
                     {/* <h5 class="card-title">{user.name}</h5> */}

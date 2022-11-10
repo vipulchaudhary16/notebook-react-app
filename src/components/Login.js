@@ -38,7 +38,7 @@ function Login(props) {
     setUser({ ...user, [e.target.name]: e.target.value });
   };
   return (
-    <div className="container xs:w-75 lg: w-25 ">
+    <div className="container xs:w-75 lg:w-25 ">
       <div>
         <h3 className="text-center py-4">Login to VeerZa Notebook</h3>
         <form

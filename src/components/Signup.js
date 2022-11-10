@@ -55,7 +55,7 @@ function Signup(props) {
   };
 
   return (
-      <div className="container xs:w-75 lg: w-25">
+      <div className="container xs:w-75 lg:w-25">
         <h3 className="text-center py-4">Create Account to save your notes</h3>
         <form
           className="d-flex flex-column justify-content-center"
