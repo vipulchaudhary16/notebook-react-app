@@ -27,9 +27,9 @@ function Login(props) {
       localStorage.setItem("token", loginJSON.authToken);
       localStorage.setItem("email", user.email);
       history.push("/");
-      props.showAlert("Welcome back", "success");
+      // props.showAlert("Welcome back", "success");
     } else {
-      props.showAlert(loginJSON.error, "danger");
+      // props.showAlert(loginJSON.error, "danger");
     }
     setLoading(false);
   };
@@ -38,9 +38,8 @@ function Login(props) {
     setUser({ ...user, [e.target.name]: e.target.value });
   };
   return (
-    <div className="container xs:w-75 lg:w-25 ">
       <div>
-        <h3 className="text-center py-4">Login to VeerZa Notebook</h3>
+        <h5 className="text-center py-2">Login to VeerZa Notebook</h5>
         <form
           className="d-flex flex-column justify-content-center"
           onSubmit={handleSubmit}
@@ -78,7 +77,6 @@ function Login(props) {
             {loading ? <Loader loading={loading} /> : "Login"}
           </button>
         </form>
-      </div>
     </div>
   );
 }

@@ -41,8 +41,8 @@ function AddNote(props) {
   };
 
   return (
-    <div className="mb-4">
-      <button className="btn btn-secondary my-2" onClick={showHideForm}>
+    <div className="p-4">
+      <button className="btn btn-secondary" onClick={showHideForm}>
         <i className={`fa fa-${minus_or_plus}`}></i>
       </button>
 

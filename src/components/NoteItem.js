@@ -7,7 +7,7 @@ function NoteItem(props) {
   const context = useContext(noteContext);
   const { deleteNote } = context;
   return (
-    <div className="col-md-3">
+    <div className="col-md-3 m-2">
       <div
         className="card my-2"
         style={{ "boxShadow": "rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px" }}

@@ -1,10 +1,10 @@
 import { React, useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import Loader from "./Loader";
 
 function Signup(props) {
   const host = "https://backend-database-for-notebook.vercel.app";
-  
+
   const [loading, setLoading] = useState(false);
   const [user, setUser] = useState({
     name: "",
@@ -55,13 +55,14 @@ function Signup(props) {
   };
 
   return (
-      <div className="container xs:w-75 lg:w-25">
-        <h3 className="text-center py-4">Create Account to save your notes</h3>
+    <div className="main_container">
+      <div className="container_content">
+        
         <form
           className="d-flex flex-column justify-content-center"
           onSubmit={handleSubmit}
         >
-
+          <h3 className="text-center py-4">Create Account to save your notes</h3>
           <div className="mb-3">
             <label htmlFor="name" className="form-label">
               Name
@@ -124,8 +125,10 @@ function Signup(props) {
           <button type="submit" className="btn btn-primary">
             {loading ? <Loader loading={loading} /> : "Create Account"}
           </button>
+         <p className="mt-2 text-center"> <Link  to="/welcome">Already Have Account? Login</Link></p>
         </form>
       </div>
+    </div>
   );
 }
 

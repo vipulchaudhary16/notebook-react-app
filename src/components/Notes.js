@@ -13,9 +13,8 @@ function Notes(props) {
   useEffect(() => {
     if (localStorage.getItem("token")) {
       getAllNotes();
-    }
-    else{
-      history.push("/login");
+    } else {
+      history.push("/welcome");
     }
     // eslint-disable-next-line
   }, []);
@@ -53,6 +52,7 @@ function Notes(props) {
   return (
     <div>
       <AddNote showAlert={showAlert} />
+
       {/*Bootstrap modal for editNote */}
       <button
         ref={ref}
@@ -154,21 +154,23 @@ function Notes(props) {
           </div>
         </div>
       </div>
-      <div className="row my-3">
+      <div className="p-4">
         <h3>Your Notes</h3>
-        <div className="container mx-2">
+        <div>
           {notes.length === 0 && "No notes to display, Click + to add one!"}
         </div>
-        {notes.map((note) => {
-          return (
-            <NoteItem
-              key={note._id}
-              updateNote={updateNote}
-              note={note}
-              showAlert={showAlert}
-            />
-          );
-        })}
+        <div className="notes_container">
+          {notes.map((note) => {
+            return (
+              <NoteItem
+                key={note._id}
+                updateNote={updateNote}
+                note={note}
+                showAlert={showAlert}
+              />
+            );
+          })}
+        </div>
       </div>
     </div>
   );

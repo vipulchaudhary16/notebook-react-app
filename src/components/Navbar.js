@@ -29,7 +29,7 @@ export default function Navbar(props) {
     localStorage.removeItem("token");
     localStorage.removeItem("email");
     showAlert("Logged Out", "success");
-    history.push("/login");
+    history.push("/welcome");
   };
 
   return (
@@ -91,7 +91,6 @@ export default function Navbar(props) {
               <div className="d-flex">
                 <button
                   className="btn btn-primary mx-2"
-                  role="button"
                   onClick={showHideForm}
                 >
                   <i className="fa fa-user" ></i>
@@ -107,14 +106,12 @@ export default function Navbar(props) {
                     <p class="card-text">
                       
                     </p>
-                    <Link
+                    <button
                       className="btn btn-primary mx-2"
-                      to="/login"
-                      role="button"
                       onClick={handleLogout}
                     >
                       Logout
-                    </Link>
+                    </button>
                   </div>
                 </div>
               </div>

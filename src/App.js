@@ -1,13 +1,13 @@
 import "./App.css";
 import Navbar from "./components/Navbar";
-import About from "./components/About";
 import Home from "./components/Home";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import NoteState from "./context/Notes/noteState";
 import Alert from "./components/Alert";
-import {useState} from "react";
+import { useState } from "react";
+import Welcome from "./components/Welcome";
 
 function App() {
   const [alert, setAlert] = useState(null);
@@ -24,29 +24,19 @@ function App() {
     <>
       <NoteState>
         <Router>
-          <Navbar showAlert={showAlert} />
-          <Alert  alert={alert} />
+          <Alert alert={alert} />
           <div
-            className="px-3"
-            style={{
-              backgroundColor: "#74EBD5",
-              backgroundImage:
-                "linear-gradient(90deg, #74EBD5 0%, #9FACE6 100%)",
-              minHeight: "100vh",
-            }}
+            
           >
             <Switch>
               <Route exact path="/">
                 <Home showAlert={showAlert} />
               </Route>
-              {/* <Route exact path="/about">
-                <About />
-              </Route> */}
-              <Route exact path="/login">
-                <Login showAlert={showAlert} />
+              <Route exact path="/welcome">
+                <Welcome/>
               </Route>
               <Route exact path="/signup">
-                <Signup showAlert={showAlert}/>
+                <Signup showAlert={showAlert} />
               </Route>
             </Switch>
           </div>
