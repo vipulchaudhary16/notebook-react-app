@@ -1,11 +1,13 @@
 import { React, useContext } from "react";
+import AlertContext from "../context/Alert/alertContext";
 import noteContext from "../context/Notes/noteContext";
-import "../CSS/NoteItem.css";
 
 function NoteItem(props) {
   const { note, updateNote } = props;
   const context = useContext(noteContext);
   const { deleteNote } = context;
+
+  const { showAlert } = useContext(AlertContext);
   return (
     <div className="col-md-3 m-2">
       <div
@@ -25,7 +27,7 @@ function NoteItem(props) {
               className="fa fa-trash-o mx-1"
               onClick={() => {
                 deleteNote(note._id);
-                props.showAlert("Note deleted","danger");
+                showAlert("Note deleted","danger");
               }}
             ></i>
           </div>

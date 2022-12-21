@@ -1,24 +1,24 @@
 import { React, useContext, useState } from "react";
+import AlertContext from "../context/Alert/alertContext";
 import noteContext from "../context/Notes/noteContext";
-import Loader from "./Loader";
 
 function AddNote(props) {
   //Context sentences
   const context = useContext(noteContext);
   const { addNote } = context;
 
+  const {showAlert} = useContext(AlertContext)
+
   //State for adding notes
   const [note, setNote] = useState({ title: "", description: "", tag: "" });
 
   const [formDisplay, setFormDisplay] = useState("d-none");
-
   const [minus_or_plus, setMinusOrPlus] = useState("plus");
-  const [loading, setLoading] = useState(false);
 
   const handleAddNote = (e) => {
     e.preventDefault(); //It will prevent browser from reloading
     addNote(note.title, note.description, note.tag); //Context call
-    props.showAlert("Note added", "success");
+    showAlert("Note added", "success");
     setNote({ title: "", description: "", tag: "" });
   };
 
@@ -99,7 +99,7 @@ function AddNote(props) {
             className="btn btn-primary"
             onClick={handleAddNote}
           >
-            {loading ? <Loader loading={loading} /> : "Add Note"}
+            Add Note
           </button>
         </form>
       </div>

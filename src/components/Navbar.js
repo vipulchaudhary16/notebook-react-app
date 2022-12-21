@@ -1,16 +1,17 @@
-import { React, useEffect, useState } from "react";
+import { React, useContext, useEffect, useState } from "react";
 import { Link, useLocation, useHistory } from "react-router-dom";
+import AlertContext from "../context/Alert/alertContext";
 
-export default function Navbar(props) {
+export default function Navbar() {
   let location = useLocation();
   let history = useHistory();
-  const { showAlert } = props;
+  const { showAlert } = useContext(AlertContext);
+  console.log(useContext(AlertContext))
 
   const [user, setUser] = useState({ name: "Test", email: "Test@gmail.com" });
 
   useEffect(() => {
-    setUser( {name : 'Ravina' , email : 
-    localStorage.getItem('email')});
+    setUser({ name: "Ravina", email: localStorage.getItem("email") });
   }, [location]);
 
   const [dashDisplay, setDashDisplay] = useState("d-none");
@@ -21,8 +22,7 @@ export default function Navbar(props) {
     } else {
       setDashDisplay("d-none");
     }
-    setUser( {name : 'Ravina' , email : 
-    localStorage.getItem('email')});
+    setUser({ name: "Ravina", email: localStorage.getItem("email") });
   };
 
   const handleLogout = () => {
@@ -75,25 +75,11 @@ export default function Navbar(props) {
               </li> */}
             </ul>
             {!localStorage.getItem("token") ? (
-              <form className="d-flex">
-                <Link
-                  className="btn btn-primary mx-2"
-                  to="/login"
-                  role="button"
-                >
-                  Login
-                </Link>
-                <Link className="btn btn-primary" to="/signup" role="button">
-                  Signup
-                </Link>
-              </form>
+              <form className="d-flex">{null}</form>
             ) : (
               <div className="d-flex">
-                <button
-                  className="btn btn-primary mx-2"
-                  onClick={showHideForm}
-                >
-                  <i className="fa fa-user" ></i>
+                <button className="btn btn-primary mx-2" onClick={showHideForm}>
+                  <i className="fa fa-user"></i>
                 </button>
 
                 <div
@@ -101,11 +87,8 @@ export default function Navbar(props) {
                   style={{ right: 3, top: 60 }}
                 >
                   <div class="card-body">
-                    {/* <h5 class="card-title">{user.name}</h5> */}
                     <h6 class="card-subtitle mb-2 text-muted">{user.email}</h6>
-                    <p class="card-text">
-                      
-                    </p>
+                    <p class="card-text"></p>
                     <button
                       className="btn btn-primary mx-2"
                       onClick={handleLogout}

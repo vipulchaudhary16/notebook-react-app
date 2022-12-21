@@ -1,47 +1,28 @@
 import "./App.css";
-import Navbar from "./components/Navbar";
 import Home from "./components/Home";
-import Login from "./components/Login";
 import Signup from "./components/Signup";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import NoteState from "./context/Notes/noteState";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import Alert from "./components/Alert";
-import { useState } from "react";
+import { useContext } from "react";
 import Welcome from "./components/Welcome";
+import AlertContext from "./context/Alert/alertContext";
 
 function App() {
-  const [alert, setAlert] = useState(null);
-  const showAlert = (message, type) => {
-    setAlert({
-      msg: message,
-      type: type,
-    });
-    setTimeout(() => {
-      setAlert(null);
-    }, 1700);
-  };
+  const { alert } = useContext(AlertContext);
   return (
     <>
-      <NoteState>
-        <Router>
-          <Alert alert={alert} />
-          <div
-            
-          >
-            <Switch>
-              <Route exact path="/">
-                <Home showAlert={showAlert} />
-              </Route>
-              <Route exact path="/welcome">
-                <Welcome/>
-              </Route>
-              <Route exact path="/signup">
-                <Signup showAlert={showAlert} />
-              </Route>
-            </Switch>
-          </div>
-        </Router>
-      </NoteState>
+      <Router>
+        {alert && <Alert alert={alert} />}
+        <Route exact path="/">
+          <Home />
+        </Route>
+        <Route exact path="/welcome">
+          <Welcome />
+        </Route>
+        <Route exact path="/signup">
+          <Signup />
+        </Route>
+      </Router>
     </>
   );
 }

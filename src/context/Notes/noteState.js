@@ -2,15 +2,16 @@ import NoteContext from "./noteContext";
 import { useState } from "react";
 
 const NoteState = (props) => {
-  const host = "https://backend-database-for-notebook.vercel.app"
+  const host = "https://backend-database-for-notebook.vercel.app";
+
   //Getting all notes while user is logged in
   const getAllNotes = async () => {
     const response = await fetch(`${host}/api/notes/fetchallnotes`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        "auth-token" : localStorage.getItem('token')
-      }
+        "auth-token": localStorage.getItem("token"),
+      },
     });
     const json = await response.json();
     setNotes(json);
@@ -27,37 +28,38 @@ const NoteState = (props) => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "auth-token" : localStorage.getItem('token')
+        "auth-token": localStorage.getItem("token"),
       },
-      body: JSON.stringify({title , description, tag}),
+      body: JSON.stringify({ title, description, tag }),
     });
     const note = await response.json();
     setNotes(notes.concat(note));
   };
 
   //To edit a note
-   const editNote = async (id, title, description, tag) => {
+  const editNote = async (id, title, description, tag) => {
     const response = await fetch(`${host}/api/notes/updatenote/${id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
-        "auth-token" : localStorage.getItem('token')
+        "auth-token": localStorage.getItem("token"),
       },
-      body: JSON.stringify({title , description, tag}),
+      body: JSON.stringify({ title, description, tag }),
     });
 
-    let newNotes = JSON.parse(JSON.stringify(notes))
-
-    for (let index = 0; index < newNotes.length; index++) {
-      //Find and update
-      const element = newNotes[index];
-      if (element._id === id) {
-        newNotes[index].title = title;
-        newNotes[index].description = description;
-        newNotes[index].tag = tag;
+    if (response.ok) {
+      let newNotes = JSON.parse(JSON.stringify(notes));
+      for (let index = 0; index < newNotes.length; index++) {
+        //Find and update
+        const element = newNotes[index];
+        if (element._id === id) {
+          newNotes[index].title = title;
+          newNotes[index].description = description;
+          newNotes[index].tag = tag;
+        }
       }
+      setNotes(newNotes);
     }
-    setNotes(newNotes);
   };
 
   //To delete note
@@ -66,19 +68,22 @@ const NoteState = (props) => {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
-        "auth-token" : localStorage.getItem('token')
+        "auth-token": localStorage.getItem("token"),
       },
     });
-    const json= response.json();
 
-    const newNotes = notes.filter((note) => {
-      return note._id !== id;
-    });
-    setNotes(newNotes);
+    if (response.ok) {
+      const newNotes = notes.filter((note) => {
+        return note._id !== id;
+      });
+      setNotes(newNotes);
+    }
   };
 
   return (
-    <NoteContext.Provider value={{notes,getAllNotes, addNote, editNote, deleteNote }}>
+    <NoteContext.Provider
+      value={{ notes, getAllNotes, addNote, editNote, deleteNote }}
+    >
       {props.children}
     </NoteContext.Provider>
   );

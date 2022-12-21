@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Maven+Pro:wght@500&display=swap');
 
+.fa{
+  cursor: pointer;
+}
+
 .maven-pro-font {
   font-family: 'Maven Pro', sans-serif;
 }
@@ -75,12 +79,11 @@ a {
   
 }
 
-
 /*Notes Home Page CSS*/
 .notes_container{
   display: flex;
   flex-direction: row;
-  justify-content: start;
+  justify-content: flex-start;
   flex-wrap: wrap;
 }
 

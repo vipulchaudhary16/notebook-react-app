@@ -5,7 +5,7 @@ function Home(props) {
   const { showAlert } = props;
   return (
     <div>
-      <Navbar showAlert={showAlert} />
+      <Navbar />
       <Notes showAlert={showAlert}></Notes>
     </div>
   );

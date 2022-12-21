@@ -3,11 +3,12 @@ import { useHistory } from "react-router-dom";
 import noteContext from "../context/Notes/noteContext";
 import NoteItem from "./NoteItem";
 import AddNote from "./AddNote";
+import AlertContext from "../context/Alert/alertContext";
 
 function Notes(props) {
   const context = useContext(noteContext);
   const { notes, getAllNotes, editNote } = context;
-  const { showAlert } = props;
+  const { showAlert } = useContext(AlertContext);
   let history = useHistory();
 
   useEffect(() => {
@@ -42,7 +43,7 @@ function Notes(props) {
     e.preventDefault(); //It will prevent browser from reloading
     refClose.current.click();
     editNote(note.id, note.etitle, note.edescription, note.etag);
-    props.showAlert("Note updated", "success");
+    showAlert("Note updated", "success");
   };
 
   const onChange = (e) => {
@@ -51,7 +52,7 @@ function Notes(props) {
 
   return (
     <div>
-      <AddNote showAlert={showAlert} />
+      <AddNote />
 
       {/*Bootstrap modal for editNote */}
       <button
@@ -166,7 +167,6 @@ function Notes(props) {
                 key={note._id}
                 updateNote={updateNote}
                 note={note}
-                showAlert={showAlert}
               />
             );
           })}
