@@ -7,7 +7,7 @@ function AddNote(props) {
   const context = useContext(noteContext);
   const { addNote } = context;
 
-  const {showAlert} = useContext(AlertContext)
+  const { showAlert } = useContext(AlertContext);
 
   //State for adding notes
   const [note, setNote] = useState({ title: "", description: "", tag: "" });
@@ -18,7 +18,7 @@ function AddNote(props) {
   const handleAddNote = (e) => {
     e.preventDefault(); //It will prevent browser from reloading
     addNote(note.title, note.description, note.tag); //Context call
-    showAlert("Note added", "success");
+    showAlert("Note added", "success__alert");
     setNote({ title: "", description: "", tag: "" });
   };
 
@@ -28,7 +28,7 @@ function AddNote(props) {
 
   const showHideForm = () => {
     if (formDisplay === "d-none") {
-      setFormDisplay("");
+      setFormDisplay("d-absolute");
     } else {
       setFormDisplay("d-none");
     }
@@ -46,8 +46,14 @@ function AddNote(props) {
         <i className={`fa fa-${minus_or_plus}`}></i>
       </button>
 
-      <div className={`my-3 col-md-3 ${formDisplay} container `} id="form">
-        <h3 className="text-center">Add a Note</h3>
+      <div
+        className={`${formDisplay} position-absolute bg-white add_note__container`}
+        id="form"
+      >
+        <div className="d-flex justify-content-between ">
+          <h3 className="text-center">Add a Note</h3>
+          <p onClick={()=>showHideForm()} className="text-danger font-weight-bold" style={{cursor:"pointer", fontSize : "1.5rem"}}>X</p>
+        </div>
         <form className="d-flex flex-column justify-content-center">
           <div className="mb-2">
             <label htmlFor=" title" className="form-label">

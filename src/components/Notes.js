@@ -43,7 +43,7 @@ function Notes(props) {
     e.preventDefault(); //It will prevent browser from reloading
     refClose.current.click();
     editNote(note.id, note.etitle, note.edescription, note.etag);
-    showAlert("Note updated", "success");
+    showAlert("Note updated", "success__alert");
   };
 
   const onChange = (e) => {

@@ -8,7 +8,7 @@ export default function Welcome() {
       <div className="container_content">
         <div className="left_box">
           <h4>Welcome </h4>
-          <p className="description">
+          <p className="description maven-pro-font">
             VeerZa Notebook website is a painless and hassle-free solution to
             store all your notes. It is completely accessible from any device
             providing a smooth experience from start to finish. All your notes

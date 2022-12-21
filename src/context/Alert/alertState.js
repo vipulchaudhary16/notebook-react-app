@@ -2,7 +2,10 @@ import AlertContext from "./alertContext";
 import React, { useState } from "react";
 
 export default function AlertState(props) {
-  const [alert, setAlert] = useState(null);
+  const [alert, setAlert] = useState({
+    msg: "",
+    type: "",
+  });
   const showAlert = (message, type) => {
     setAlert({
       msg: message,

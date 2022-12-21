@@ -1,5 +1,6 @@
-import { React, useState } from "react";
+import { React, useContext, useState } from "react";
 import { useHistory } from "react-router-dom";
+import AlertContext from "../context/Alert/alertContext";
 import Loader from "./Loader";
 
 function Login(props) {
@@ -8,8 +9,9 @@ function Login(props) {
   const [user, setUser] = useState({ email: "", password: "" });
   const [loading, setLoading] = useState(false);
 
-  let history = useHistory({});
+  const { showAlert } = useContext(AlertContext)
 
+  let history = useHistory({});
   const handleSubmit = async (e) => {
     setLoading(true);
     e.preventDefault();
@@ -27,9 +29,9 @@ function Login(props) {
       localStorage.setItem("token", loginJSON.authToken);
       localStorage.setItem("email", user.email);
       history.push("/");
-      // props.showAlert("Welcome back", "success");
+      showAlert("Welcome back", "success__alert");
     } else {
-      // props.showAlert(loginJSON.error, "danger");
+      showAlert(loginJSON.error, "danger__alert");
     }
     setLoading(false);
   };

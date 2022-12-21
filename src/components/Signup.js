@@ -56,8 +56,7 @@ function Signup(props) {
 
   return (
     <div className="main_container">
-      <div className="container_content">
-        
+      <div className="container_content mt-4">
         <form
           className="d-flex flex-column justify-content-center"
           onSubmit={handleSubmit}
