@@ -8,7 +8,7 @@ import Welcome from "./components/Welcome";
 import AlertContext from "./context/Alert/alertContext";
 
 function App() {
-  const { alert } = useContext(AlertContext);
+  const { alert, showAlert } = useContext(AlertContext);
   return (
     <>
       <Router>
@@ -20,7 +20,7 @@ function App() {
           <Welcome />
         </Route>
         <Route exact path="/signup">
-          <Signup />
+          <Signup showAlert = {showAlert} />
         </Route>
       </Router>
     </>
