@@ -1,8 +1,14 @@
-import React from "react";
+import {React, useEffect} from "react";
 import { Link } from "react-router-dom";
 import Login from "./Login";
 
 export default function Welcome() {
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+      window.location.href = "/";
+    }
+  }, []);
+
   return (
     <div className="main_container">
       <div className="container_content">

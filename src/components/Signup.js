@@ -1,4 +1,4 @@
-import { React, useState } from "react";
+import { React, useState, useEffect } from "react";
 import { useHistory, Link } from "react-router-dom";
 import Loader from "./Loader";
 
@@ -13,6 +13,12 @@ function Signup(props) {
     cpassword: "",
   });
   let history = useHistory();
+
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+      history.push("/");
+    }
+  }, []);
 
   const handleSubmit = async (e) => {
     setLoading(true);
@@ -61,7 +67,9 @@ function Signup(props) {
           className="d-flex flex-column justify-content-center"
           onSubmit={handleSubmit}
         >
-          <h3 className="text-center py-4">Create Account to save your notes</h3>
+          <h3 className="text-center py-4">
+            Create Account to save your notes
+          </h3>
           <div className="mb-3">
             <label htmlFor="name" className="form-label">
               Name
@@ -124,7 +132,10 @@ function Signup(props) {
           <button type="submit" className="btn btn-primary">
             {loading ? <Loader loading={loading} /> : "Create Account"}
           </button>
-         <p className="mt-2 text-center"> <Link  to="/welcome">Already Have Account? Login</Link></p>
+          <p className="mt-2 text-center">
+            {" "}
+            <Link to="/welcome">Already Have Account? Login</Link>
+          </p>
         </form>
       </div>
     </div>
