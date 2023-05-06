@@ -1,8 +1,11 @@
 import NoteContext from "./noteContext";
 import { useState } from "react";
 
+export const host = "https://backend-database-for-notebook.vercel.app";
+
 const NoteState = (props) => {
-  const host = "https://backend-database-for-notebook.vercel.app";
+  //State for note perpose work , add , delete and edit
+  const [notes, setNotes] = useState([]);
 
   //Getting all notes while user is logged in
   const getAllNotes = async () => {
@@ -17,12 +20,7 @@ const NoteState = (props) => {
     setNotes(json);
   };
 
-  const notesInitial = [];
-  //State for note perpose work , add , delete and edit
-  const [notes, setNotes] = useState(notesInitial);
-
   //to add new note
-  //TODO : Tag Work
   const addNote = async (title, description, tag) => {
     const response = await fetch(`${host}/api/notes/addnote`, {
       method: "POST",

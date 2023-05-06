@@ -1,7 +1,7 @@
 import "./App.css";
 import Home from "./components/Home";
 import Signup from "./components/Signup";
-import { BrowserRouter as Router, Redirect, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import Alert from "./components/Alert";
 import { useContext } from "react";
 import Welcome from "./components/Welcome";

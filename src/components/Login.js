@@ -2,10 +2,9 @@ import { React, useContext, useState } from "react";
 import { useHistory } from "react-router-dom";
 import AlertContext from "../context/Alert/alertContext";
 import Loader from "./Loader";
+import { host } from "../context/Notes/noteState";
 
-function Login(props) {
-  const host = "https://backend-database-for-notebook.vercel.app";
-
+function Login() {
   const [user, setUser] = useState({ email: "", password: "" });
   const [loading, setLoading] = useState(false);
 
@@ -23,7 +22,6 @@ function Login(props) {
       body: JSON.stringify({ email: user.email, password: user.password }),
     });
     const loginJSON = await response.json();
-    console.log(loginJSON);
     if (loginJSON.success) {
       //Save the auth token to local storage and redirect to users note
       localStorage.setItem("token", loginJSON.authToken);

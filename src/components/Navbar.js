@@ -6,7 +6,6 @@ export default function Navbar() {
   let location = useLocation();
   let history = useHistory();
   const { showAlert } = useContext(AlertContext);
-  console.log(useContext(AlertContext))
 
   const [user, setUser] = useState({ name: "Test", email: "Test@gmail.com" });
 
@@ -83,12 +82,12 @@ export default function Navbar() {
                 </button>
 
                 <div
-                  class={`card position-absolute ${dashDisplay} xs:w-75 lg:w-25`}
+                  className={`card position-absolute ${dashDisplay} xs:w-75 lg:w-25`}
                   style={{ right: 3, top: 60 }}
                 >
-                  <div class="card-body">
-                    <h6 class="card-subtitle mb-2 text-muted">{user.email}</h6>
-                    <p class="card-text"></p>
+                  <div className="card-body">
+                    <h6 className="card-subtitle mb-2 text-muted">{user.email}</h6>
+                    <p className="card-text"></p>
                     <button
                       className="btn btn-primary mx-2"
                       onClick={handleLogout}

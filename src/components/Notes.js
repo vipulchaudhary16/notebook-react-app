@@ -161,7 +161,7 @@ function Notes(props) {
           {notes.length === 0 && "No notes to display, Click + to add one!"}
         </div>
         <div className="notes_container">
-          {notes.map((note) => {
+          {notes && notes.map((note) => {
             return (
               <NoteItem
                 key={note._id}

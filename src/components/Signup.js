@@ -1,10 +1,9 @@
 import { React, useState, useEffect } from "react";
 import { useHistory, Link } from "react-router-dom";
 import Loader from "./Loader";
+import { host } from "../context/Notes/noteState";
 
 function Signup(props) {
-  const host = "https://backend-database-for-notebook.vercel.app";
-
   const [loading, setLoading] = useState(false);
   const [user, setUser] = useState({
     name: "",
@@ -40,7 +39,6 @@ function Signup(props) {
       }),
     });
     const signUpJSON = await response.json();
-    console.log(signUpJSON);
     if (signUpJSON.success) {
       //Save the auth token to local storage and redirect to users note
       localStorage.setItem("token", signUpJSON.authToken);
